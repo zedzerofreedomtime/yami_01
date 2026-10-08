@@ -4,4 +4,5 @@ import { BrowserRouter } from 'react-router-dom';
 import '@fontsource-variable/noto-sans-thai';
 import App from './App';
 import './styles.css';
+import './responsive.css';
 ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><BrowserRouter><App /></BrowserRouter></React.StrictMode>);

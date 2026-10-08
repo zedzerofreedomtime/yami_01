@@ -35,6 +35,12 @@ export default function App() {
   useEffect(() => { if (menuOpen) menu.current?.showModal(); else menu.current?.close(); }, [menuOpen]);
   useEffect(() => { if (searchOpen) searchDialog.current?.showModal(); else searchDialog.current?.close(); }, [searchOpen]);
   useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 901px)');
+    function closeDesktopMenu() { if (desktop.matches) setMenuOpen(false); }
+    desktop.addEventListener('change', closeDesktopMenu);
+    return () => desktop.removeEventListener('change', closeDesktopMenu);
+  }, []);
+  useEffect(() => {
     if (!menuOpen && !searchOpen) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = 'hidden';

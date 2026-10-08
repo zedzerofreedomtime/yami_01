@@ -1,0 +1,160 @@
+/* Responsive refinements follow the original Figma styles.
+   Keep intrinsic content from widening grid/flex tracks instead of hiding overflow. */
+.container,
+.container > *,
+.home-place-grid > *,
+.story-grid > *,
+.object-grid > *,
+.principles > *,
+.past-grid > *,
+.about-sources > div > * {
+  min-width: 0;
+}
+
+h1, h2, h3, p, .source-link, .source-tile, .search-suggestions a {
+  overflow-wrap: anywhere;
+}
+
+.home-hero, .story-feature, .detail-hero, .object-detail-grid, .about-hero {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.home-place-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.story-grid, .object-grid, .principles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.past-grid, .about-sources > div { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.explore-grid { grid-template-columns: minmax(0, 574fr) minmax(0, 696fr); }
+.map-page-grid { grid-template-columns: minmax(0, 454fr) minmax(0, 816fr); }
+.detail-story { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.button { max-width: 100%; }
+.arrow, .close-button { flex-shrink: 0; }
+.search-suggestions a > span:first-child, .selected-place > * { min-width: 0; }
+.questions li > span { flex-shrink: 0; }
+.search-field { flex-shrink: 1; }
+.page-heading > div { flex: 1 1 460px; }
+.page-heading > .search-field { flex: 0 1 434px; }
+.closer-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 446px); }
+.closer-card { width: 100%; }
+.illustration-note .text-link { flex-shrink: 0; }
+
+@media (max-width: 1200px) {
+  .home-place-grid, .story-grid, .object-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .home-hero h1 { font-size: clamp(36px, 4.6vw, 49px); }
+  .closer-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 400px); gap: 32px; }
+  .detail-hero { gap: 32px; }
+  .about-hero { gap: 40px; }
+  .object-detail-grid { gap: 40px; }
+}
+
+@media (max-width: 900px) {
+  .container { padding-inline: clamp(24px, 4vw, 32px); }
+  .pill { min-height: 44px; }
+  .marker { width: 44px; height: 44px; }
+  .explore-grid, .map-page-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .detail-story { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+  .closer-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 24px; }
+  .home-hero { gap: 28px; }
+  .home-hero h1 { font-size: clamp(34px, 4.8vw, 43px); }
+  .principles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+  .principles > :last-child { grid-column: 1 / -1; max-width: 60ch; }
+  .mobile-menu {
+    padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+  .search-field input { font-size: 16px; }
+  .search-dialog { max-height: calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); overscroll-behavior: contain; }
+}
+
+/* Switch content-heavy layouts before their columns become cramped on small tablets. */
+@media (max-width: 760px) {
+  .home-hero, .story-feature, .detail-hero, .about-hero, .object-detail-grid,
+  .explore-grid, .map-page-grid, .detail-story, .closer-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .home-hero h1 { font-size: clamp(34px, 6.5vw, 46px); }
+  .home-hero .place-art { max-width: 560px; justify-self: center; }
+  .home-hero .button { min-width: 0; }
+  .closer-inner { padding-block: 36px; }
+  .closer-card { max-width: none; margin-top: 0; }
+  .closer-inner h2 { font-size: 34px; }
+  .map-page-grid > div:first-child .result-list, .map-page-grid .small-heading { display: none; }
+  .map-page-grid .selected-place { flex-wrap: wrap; }
+  .explore-map .schematic { aspect-ratio: 696 / 466; }
+  .map-page-grid .schematic { aspect-ratio: 696 / 500; }
+  .story-feature-copy { min-height: 230px; }
+  .story-feature-copy p { max-width: none; }
+  .detail-hero { gap: 28px; }
+  .detail-look { width: 100%; }
+  .detail-story { padding-block: 38px; }
+  .visit-box { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .visit-box > .button { min-height: 56px; width: 100%; }
+  .about-sources > div { grid-template-columns: minmax(0, 1fr); }
+  .illustration-note { flex-wrap: wrap; }
+  .object-grid { grid-template-columns: minmax(0, 1fr); }
+  .object-card { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 24px; align-items: center; }
+  .object-card .object-art { height: auto; aspect-ratio: 368 / 270; object-fit: contain; }
+  .object-card h2 { margin-top: 0; }
+  .object-card p { margin-bottom: 22px; }
+}
+
+@media (max-width: 640px) {
+  .container { padding-inline: clamp(16px, 6vw, 24px); }
+  .home-place-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .story-grid, .principles, .past-grid { grid-template-columns: minmax(0, 1fr); }
+  .principles > :last-child { grid-column: auto; }
+  .home-hero h1 { font-size: clamp(32px, 10vw, 39px); }
+  .home-hero .place-art { aspect-ratio: auto; }
+  .detail-hero .place-art { aspect-ratio: auto; }
+  .hero-description br { display: none; }
+  .hero-description { max-width: 34ch; }
+  .object-card { grid-template-columns: 96px minmax(0, 1fr); gap: 20px; }
+  .object-card .object-art { min-height: 128px; }
+  .object-card h2 { font-size: clamp(22px, 6.5vw, 27px); }
+  .page-heading h1, .detail-hero h1 { font-size: clamp(27px, 8vw, 31px); }
+  .search-field input { font-size: 16px; padding-inline: 16px; }
+  .search-field { padding-right: 16px; gap: 8px; }
+  .page-heading > .search-field { width: 100%; }
+  .source-link { font-size: 17px; }
+  .visit-box > .button { margin-top: 0; }
+  .body-copy > span { display: inline; }
+  .body-copy > span + span::before { content: ' '; }
+  .explore-map .schematic, .map-page-grid .schematic { aspect-ratio: 342 / 360; }
+  .map-note { max-width: calc(100% - 32px); }
+  .river-label { bottom: 14px; left: 16px; }
+  .search-dialog-inner { padding: 20px; }
+  .dialog-heading { gap: 12px; }
+  .dialog-heading h2 { font-size: clamp(21px, 6vw, 24px); }
+  .search-suggestions a { padding: 16px; font-size: 17px; gap: 12px; }
+  .search-suggestions small { font-size: 13px; }
+  .trust-band .button, .empty-state .button { padding-inline: 20px; }
+}
+
+@media (max-width: 380px) {
+  .home-place-grid { grid-template-columns: minmax(0, 1fr); }
+  .home-place { min-height: 0; }
+  .home-place .kicker { margin-bottom: 14px; }
+  .home-place h3 { font-size: 21px; }
+  .home-place p { font-size: 14px; }
+  .home-place .text-link { font-size: 15px; }
+  .object-card { padding: 16px; grid-template-columns: 80px minmax(0, 1fr); gap: 16px; }
+  .object-card .text-link { font-size: 15px; }
+  .place-card { gap: 10px; padding: 14px; }
+  .place-card.chosen { padding: 13px; }
+  .place-card-text strong { font-size: 17px; }
+  .place-card-text > span { font-size: 12px; }
+  .number { width: 42px; }
+  .tabs { gap: 8px; }
+  .pill { padding-inline: 14px; }
+}
+
+/* Short landscape screens keep every menu control reachable by vertical scrolling. */
+@media (max-width: 900px) and (max-height: 600px) {
+  .mobile-menu h2 { margin-block: 18px; font-size: 28px; }
+  .mobile-menu nav { gap: 10px; }
+  .mobile-menu nav a { min-height: 56px; padding-block: 12px; font-size: 22px; }
+  .mobile-menu > p { margin-top: 24px; }
+  .menu-search, .mobile-menu > .button { margin-top: 18px; }
+}
+@media (min-width: 600px) and (max-width: 900px) and (max-height: 600px) {
+  .mobile-menu nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
